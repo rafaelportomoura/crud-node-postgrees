@@ -9,7 +9,7 @@
     "colors": "^1.0.3",
     "express": "^4.10.6",
     "path": "^0.4.9",
-    "pg": "^4.1.1"
+    "pg": "^8.7.1"
   },
   "devDependencies": {
     "morgan": "~1.1.1"
