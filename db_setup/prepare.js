@@ -4,21 +4,31 @@ var pg = require('pg');
 var database = require('../server/config/database.js');
 var conString = database.conString;
 
-var client = new pg.Client(conString);
-client.connect();
+async function connect() {
+  let client;
+  try {
+    client = new pg.Client(conString);
+    await client.connect();
 
-client.query("CREATE TABLE todos(id serial not null primary key, text name, done boolean)");
-client.query("INSERT INTO todos(text, done) values('Hi!',true)");
-client.query("INSERT INTO todos(text, done) values('Hello!', false)");
+    await client.query(
+      'CREATE TABLE todos(id serial not null primary key, text name, done boolean)'
+    );
+    await client.query("INSERT INTO todos(text, done) values('Hi!',true)");
+    await client.query("INSERT INTO todos(text, done) values('Hello!', false)");
 
-var query = client.query("SELECT * FROM todos");
+    var query = await client.query('SELECT * FROM todos');
 
-query.on('row', function(row) {
-    console.log(row);
-});
+    console.log(query.rows);
+    console.log('DB Done!');
+  } catch (error) {
+    console.log('Error: ' + error.message);
+  } finally {
+    if (client) {
+      client.end(); // workaround fix
+    }
+  }
+}
 
-console.log('DB Done!');
-
-query.on('end', function() {
-    client.end();
-});
+(async function () {
+  await connect();
+})();
