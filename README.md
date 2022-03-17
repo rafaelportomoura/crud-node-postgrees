@@ -39,13 +39,13 @@ Windows
 Linux
 
 ```bash
-  docker run -d -v $(pwd)/crud-node-postgres:/workspace -p 8181:8181 -p 3090:3090 jacksonpires/cloud9_nvm --auth username:password
+  docker run -d -v $(pwd)/crud-node-postgres:/workspace -p 8181:8181 -p 3090:3090 rafaelmouradev/cloud9 --auth username:password
 ```
 
 Windows
 
 ```powershell
-  docker run -d -v %cd%/crud-node-postgres:/workspace -p 8181:8181 -p 3090:3090 jacksonpires/cloud9_nvm --auth username:password
+  docker run -d -v %cd%/crud-node-postgres:/workspace -p 8181:8181 -p 3090:3090 rafaelmouradev/cloud9 --auth username:password
 ```
 
 * Browse to **[http:localhost:8181](http://localhost:8181)** to go inside Cloud9 container
